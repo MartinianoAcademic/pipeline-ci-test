@@ -1,0 +1,31 @@
+name: Pipeline CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Etapa 1 - Clonación del repositorio
+        uses: actions/checkout@v4
+
+      - name: Etapa 2 - Instalación de dependencias
+        run: |
+          echo "Instalando dependencias necesarias..."
+          python -m pip install --upgrade pip
+
+      - name: Etapa 3 - Ejecución de pruebas básicas
+        run: |
+          echo "Ejecutando pruebas unitarias..."
+          python -m unittest test_main.py
+
+      - name: Etapa 4 - Construcción del proyecto
+        run: |
+          echo "Construyendo el proyecto..."
+          python -m compileall main.py
+
+      - name: Etapa 5 - Simulación de despliegue
+        run: |
+          echo "Despliegue realizado correctamente en ambiente de pruebas"
